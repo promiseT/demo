@@ -11,10 +11,13 @@ else:
     client = "remote-cpu-cli"
 
 
-# 尝试创建 ./tmp
-os.makedirs("./tmp", exist_ok=True)
 
-cli_path = f"./tmp/{client}"
+
+# 尝试创建 ./tmp
+# os.makedirs("./tmp", exist_ok=True)
+
+tmp_dir = "./tmp"
+cli_path = f"{tmp_dir}/{client}"
 
 # 打印当前目录
 print(os.getcwd())
@@ -27,7 +30,7 @@ if not os.path.exists(cli_path):
 if os.path.exists(cli_path):
     os.chmod(cli_path, 0o755)
 # 如果 ./tmp/remote-cpu-cli 不存在 则下载
-log_file = f"./tmp/logs/output_{os.getpid()}.log"
+log_file = f"{tmp_dir}/logs/output_{os.getpid()}.log"
 
 os.makedirs(os.path.dirname(log_file), exist_ok=True)
 if not os.path.exists(log_file):
