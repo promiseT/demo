@@ -16,19 +16,15 @@ else:
 # 尝试创建 ./tmp
 # os.makedirs("./tmp", exist_ok=True)
 
-tmp_dir = "./tmp"
-cli_path = f"{tmp_dir}/{client}"
+tmp_dir = "/tmp"
+cli_path = f"./tmp/{client}"
 
 # 打印当前目录
 print(os.getcwd())
-
-# 如果./tmp/remote-cpu-cli 不存在 则下载
-if not os.path.exists(cli_path):
-    # 下载 remote-cpu-cli
-    subprocess.run(["wget", "https://drive.google.com/uc?export=download&id=1zaAGNihs1rY2KTwKAV3BJfuiXQ4bFGus", "-O", cli_path])
-
+# 如果./tmp/remote-cpu-cli 存在 则修改权限为 755
 if os.path.exists(cli_path):
     os.chmod(cli_path, 0o755)
+    
 # 如果 ./tmp/remote-cpu-cli 不存在 则下载
 log_file = f"{tmp_dir}/logs/output_{os.getpid()}.log"
 
